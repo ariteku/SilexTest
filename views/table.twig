@@ -1,0 +1,53 @@
+{% extends "base.twig" %}
+{% block javascript%}
+{% endblock %}
+{% block body%}
+<table id="table" class="table table-striped">
+	<tr>
+		<th>id</th>
+		<th>text</th>
+		<th>action</th>
+	</tr>
+	{% for item in article %}
+		<tr id="itemid{{ item.id }}">
+			<td>{{ item.id }}</td>
+			<td>{{ item.text }}</td>
+			<td>
+				<a href="javascript:deleteById('{{ item.id }}');">delete</a>
+				<!-- | <a href="javascript:onClickUpdatei('{{ item.id }}');">update</a> -->
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<!-- pager -->
+<div class="pagination">
+	<ul>
+		<!-- hasPrev == true -->
+		<li><a href="#">Prev</a></li>
+	    <li class="active">
+	      <a href="#">1</a>
+	    </li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+		<!-- hasNext == true -->
+	    <li><a href="#">Next</a></li>
+	</ul>
+</div>
+
+
+<!-- create form -->
+<form method="post" action="/create" class="well">
+<h3 style="width: 400px; border-bottom: solid 1px gray; margin-bottom: 5px;">create</h3>
+<p>
+<label>id</label>
+<input type="text" class="span3" placeholder="id" id="id" name="id" />
+<label>text</label>
+<textarea type="text" class="span3" placeholder="text" id="text" name="text" /></textarea>
+</p>
+<a href="javascript:onClickCreate();" class="btn btn-primary large">create</a>
+<!-- <input type="submit" /> -->
+</form>
+
+{% endblock %}
