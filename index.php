@@ -30,10 +30,6 @@ $app->get('/', function () use ($app) {
 	$sql = "select id, text from article limit 50";
 	$article = $app['db']->fetchAll($sql);
 
-	// 件数取得
-	$sql = "select count(*) from article";
-	$count = $app['db']->fetchAssoc($sql);
-
 	return $app['twig']->render('table.twig', array(
 		"article" => $article
 	));
